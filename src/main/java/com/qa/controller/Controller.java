@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +39,25 @@ public class Controller {
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Person>> getAll() {
 		return new ResponseEntity<List<Person>>(this.people, HttpStatus.OK);
+	}
+	
+	            // /getByIndex/0
+	@GetMapping("/getByIndex/{id}")
+	public ResponseEntity<Person> getByIndex(@PathVariable Integer id) {
+		return new ResponseEntity<Person>(this.people.get(id), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Person> deleteByIndex(@PathVariable Integer id) {
+		return new ResponseEntity<Person>(this.people.remove(id.intValue()), HttpStatus.ACCEPTED);
+	}  
+	
+	@PutMapping("/updatePerson/{id}")
+	public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
+		
+		System.out.println("Replacing: " + this.people.get(id).toString() + ". With: " + person.toString());
+		
+		return null;
 	}
 	
 	
