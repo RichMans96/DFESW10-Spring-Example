@@ -43,10 +43,10 @@ public class PersonService {
 		return this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Can't find that person"));
 	}
 	
-	public List<Person> findByNameAndFood(String name, String faveFood) {
-		return this.repo.findPersonByNameAndFavefood(name, faveFood);
-	}
-	
+//	public List<Person> findByNameAndFood(String name, String faveFood) {
+//		return this.repo.findPersonByNameAndFavefood(name, faveFood);
+//	}
+//	
 	public Person updatePerson(Integer id, Person p) {
 		//find that person
 		Person foundPerson = this.getById(id);
