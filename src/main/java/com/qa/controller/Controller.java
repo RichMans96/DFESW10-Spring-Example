@@ -42,15 +42,15 @@ public class Controller {
 		return new ResponseEntity<Person>(this.service.getById(id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Person> deleteByIndex(@PathVariable Integer id) {
-		return new ResponseEntity<Person>(this.service.deletePerson(id), HttpStatus.ACCEPTED);
-	}  
-	
-	@PutMapping("/updatePerson/{id}")
-	public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
-		return new ResponseEntity<Person>(this.service.updatePerson(id, person), HttpStatus.ACCEPTED);
-	}
+//	@DeleteMapping("/delete/{id}")
+//	public ResponseEntity<Person> deleteByIndex(@PathVariable Integer id) {
+//		return new ResponseEntity<Person>(this.service.deletePerson(id), HttpStatus.ACCEPTED);
+//	}  
+//	
+//	@PutMapping("/updatePerson/{id}")
+//	public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
+//		return new ResponseEntity<Person>(this.service.updatePerson(id, person), HttpStatus.ACCEPTED);
+//	}
 	
 	
 }

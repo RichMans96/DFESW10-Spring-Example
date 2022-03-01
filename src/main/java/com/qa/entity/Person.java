@@ -1,8 +1,20 @@
 package com.qa.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity // Creates Person as a table
 public class Person {
 	 
-	private int Id;
+	@Id // is the PK of our table
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increments
+	private int id;
+	
+//	@Column(name = "fullname")
 	private String name;
 	private int age;
 	private String faveFood;
@@ -10,22 +22,19 @@ public class Person {
 	
 	public Person() {}
 	
-	public Person(int id, String name, int age, String faveFood) {
+	public Person(String name, int age, String faveFood) {
 		super();
-		this.Id = id;
 		this.name = name;
 		this.age = age;
 		this.faveFood = faveFood;
 	}
 
-	
-	
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -54,7 +63,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [Id=" + Id + ", name=" + name + ", age=" + age + ", faveFood=" + faveFood + "]";
+		return "Person [Id=" + id + ", name=" + name + ", age=" + age + ", faveFood=" + faveFood + "]";
 	}
 
 
