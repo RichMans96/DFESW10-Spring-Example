@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.entity.Person;
+import com.qa.exceptions.PersonNotFoundException;
 import com.qa.repo.PersonRepo;
 
 @Service
@@ -40,7 +41,7 @@ public class PersonService {
 //			throw new EntityNotFoundException("Can't find that person");
 //		}
 //		
-		return this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Can't find that person"));
+		return this.repo.findById(id).orElseThrow(() -> new PersonNotFoundException("Can't find that person"));
 	}
 	
 //	public List<Person> findByNameAndFood(String name, String faveFood) {
