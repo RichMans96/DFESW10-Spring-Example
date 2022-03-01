@@ -41,16 +41,24 @@ public class Controller {
 	public ResponseEntity<Person> getByIndex(@PathVariable Integer id) {
 		return new ResponseEntity<Person>(this.service.getById(id), HttpStatus.OK);
 	}
+
 	
-//	@DeleteMapping("/delete/{id}")
-//	public ResponseEntity<Person> deleteByIndex(@PathVariable Integer id) {
-//		return new ResponseEntity<Person>(this.service.deletePerson(id), HttpStatus.ACCEPTED);
-//	}  
-//	
-//	@PutMapping("/updatePerson/{id}")
-//	public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
-//		return new ResponseEntity<Person>(this.service.updatePerson(id, person), HttpStatus.ACCEPTED);
-//	}
+	@PutMapping("/updatePerson/{id}")
+	public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
+		return new ResponseEntity<Person>(this.service.updatePerson(id, person), HttpStatus.ACCEPTED);
+	}
+	
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Boolean> deleteByIndex(@PathVariable Integer id) {
+		boolean hasDeleted = this.service.deletePerson(id);
+		
+		if(hasDeleted) {
+		return new ResponseEntity<Boolean>(hasDeleted, HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Boolean>(hasDeleted, HttpStatus.I_AM_A_TEAPOT);
+		}
+	}  
 	
 	
 }

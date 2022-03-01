@@ -42,12 +42,20 @@ public class PersonService {
 		return this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Can't find that person"));
 	}
 	
-//	public Person updatePerson(Integer id, Person p) {
-//		return ;
-//	}
-//	
-//	public Person deletePerson(Integer id) {
-//		return ;
-//	}
+	public Person updatePerson(Integer id, Person p) {
+		//find that person
+		Person foundPerson = this.getById(id);
+		//update their info
+		foundPerson.setAge(p.getAge());
+		foundPerson.setFaveFood(p.getFaveFood());
+		foundPerson.setName(p.getName());
+		//save that back to the database
+		return this.repo.save(foundPerson);
+	}
+	
+	public boolean deletePerson(Integer id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);   
+	}
 
 }
