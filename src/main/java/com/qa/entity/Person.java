@@ -17,7 +17,8 @@ public class Person {
 //	@Column(name = "fullname")
 	private String name;
 	private int age;
-	private String faveFood;
+//	@Column(name = "favefood")
+	private String favefood;
 	
 	
 	public Person() {}
@@ -26,7 +27,7 @@ public class Person {
 		super();
 		this.name = name;
 		this.age = age;
-		this.faveFood = faveFood;
+		this.favefood = faveFood;
 	}
 
 	public int getId() {
@@ -54,16 +55,16 @@ public class Person {
 	}
 
 	public String getFaveFood() {
-		return faveFood;
+		return favefood;
 	}
 
 	public void setFaveFood(String faveFood) {
-		this.faveFood = faveFood;
+		this.favefood = faveFood;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [Id=" + id + ", name=" + name + ", age=" + age + ", faveFood=" + faveFood + "]";
+		return "Person [Id=" + id + ", name=" + name + ", age=" + age + ", faveFood=" + favefood + "]";
 	}
 
 

@@ -41,6 +41,11 @@ public class Controller {
 	public ResponseEntity<Person> getByIndex(@PathVariable Integer id) {
 		return new ResponseEntity<Person>(this.service.getById(id), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findByNameAndFood/{name}/{food}")
+	public ResponseEntity<List<Person>> getByNameAndFood(@PathVariable String name, @PathVariable String food) {
+		return new ResponseEntity<List<Person>>(this.service.findByNameAndFood(name, food), HttpStatus.OK);
+	}
 
 	
 	@PutMapping("/updatePerson/{id}")

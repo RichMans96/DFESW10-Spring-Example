@@ -27,6 +27,7 @@ public class PersonService {
 	
 	
 	public List<Person> getAllPersons() {
+		                // SELECT * FROM person;
 		return this.repo.findAll();
 	}
 	
@@ -42,6 +43,10 @@ public class PersonService {
 		return this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Can't find that person"));
 	}
 	
+	public List<Person> findByNameAndFood(String name, String faveFood) {
+		return this.repo.findPersonByNameAndFavefood(name, faveFood);
+	}
+	
 	public Person updatePerson(Integer id, Person p) {
 		//find that person
 		Person foundPerson = this.getById(id);
@@ -50,6 +55,7 @@ public class PersonService {
 		foundPerson.setFaveFood(p.getFaveFood());
 		foundPerson.setName(p.getName());
 		//save that back to the database
+		                 //INSERT INTO...
 		return this.repo.save(foundPerson);
 	}
 	
