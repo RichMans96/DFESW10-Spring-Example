@@ -1,7 +1,9 @@
 package com.qa.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -68,6 +70,41 @@ public class PersonControllerIntegrationTest {
 		ResultMatcher responseContent = content().json(savedPeopleJSON);
 
 		this.mvc.perform(req).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	@Test
+	void getByIdTest() throws Exception {
+		Person savedPerson = new Person(1, "Richard", 25, "Pizza");
+		String savedPersonJSON = this.mapper.writeValueAsString(savedPerson);
+		
+		RequestBuilder req = get("/getByIndex/1");
+		
+		ResultMatcher responseStatus = status().isOk();
+		ResultMatcher responseContent = content().json(savedPersonJSON);
+
+		this.mvc.perform(req).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	@Test
+	void updatePersonTest() throws Exception {
+		Person updatedPerson = new Person(1, "Richard", 25, "Pasta");
+		String updatedPersonJSON = this.mapper.writeValueAsString(updatedPerson);
+		
+		RequestBuilder req = put("/updatePerson/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(updatedPersonJSON);
+		
+		ResultMatcher responseStatus = status().isAccepted();
+		ResultMatcher responseContent = content().json(updatedPersonJSON);
+		
+		this.mvc.perform(req).andExpect(responseStatus).andExpect(responseContent);
+	}
+	
+	
+	@Test
+	void deletePersonTest() throws Exception {
+		this.mvc.perform(delete("/delete/1"))
+		.andExpect(status().isAccepted());
 	}
 
 }
