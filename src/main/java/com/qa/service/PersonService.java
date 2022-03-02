@@ -40,7 +40,6 @@ public class PersonService {
 //		} else {
 //			throw new EntityNotFoundException("Can't find that person");
 //		}
-//		
 		return this.repo.findById(id).orElseThrow(() -> new PersonNotFoundException("Can't find that person"));
 	}
 	

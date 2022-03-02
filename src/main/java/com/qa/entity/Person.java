@@ -23,6 +23,14 @@ public class Person {
 	
 	public Person() {}
 	
+	public Person(int id, String name, int age, String faveFood) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.favefood = faveFood;
+	}
+	
 	public Person(String name, int age, String faveFood) {
 		super();
 		this.name = name;
