@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,23 @@ public class PersonServiceUnitTest {
 		//Then
 		assertThat(this.service.createPerson(personToSave)).isEqualTo(personSaved);
 		//Verify
+		Mockito.verify(this.repo, Mockito.times(1)).save(Mockito.any(Person.class));
+	}
+	
+	@Test
+	void testUpdate() {
+//    	Given
+		int id = 1;
+		Person savedFruit = new Person(1, "Lemon", 25, "Pizza");
+		Person preUpdate = new Person("Lemon", 25, "Pasta");
+		Person postUpdate = new Person(1, "Lemon", 25, "Pasta");
+//    	When
+		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(savedFruit));
+		Mockito.when(this.repo.save(postUpdate)).thenReturn(postUpdate);
+//    	Then
+		Assertions.assertThat(this.service.updatePerson(id, preUpdate)).isEqualTo(postUpdate);
+//    	Verify
+		Mockito.verify(this.repo, Mockito.times(1)).findById(Mockito.anyInt());
 		Mockito.verify(this.repo, Mockito.times(1)).save(Mockito.any(Person.class));
 	}
 
