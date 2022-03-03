@@ -48,7 +48,7 @@ public class PersonControllerIntegrationTest {
 		String savedPersonJSON = this.mapper.writeValueAsString(savedPerson);
 		// When
 		RequestBuilder request = post("/create").contentType(MediaType.APPLICATION_JSON).content(newPersonJSON);
-//		
+	
 		ResultMatcher responseStatus = status().isCreated();
 		ResultMatcher responseContent = content().json(savedPersonJSON);
 		// Then
