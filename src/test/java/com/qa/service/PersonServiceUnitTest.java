@@ -66,5 +66,17 @@ public class PersonServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(Mockito.anyInt());
 		Mockito.verify(this.repo, Mockito.times(1)).save(Mockito.any(Person.class));
 	}
+	
+	@Test
+	void testDelete() {
+		int id = 1;
+		
+		Mockito.when(this.repo.existsById(id)).thenReturn(false);
+		
+		Assertions.assertThat(this.service.deletePerson(id)).isTrue();
+		
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(Mockito.anyInt());
+		Mockito.verify(this.repo, Mockito.times(1)).existsById(Mockito.anyInt());
+	}
 
 }
